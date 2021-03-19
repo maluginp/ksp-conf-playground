@@ -1,20 +1,20 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    val kotlin_version by extra("1.4.31")
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:4.1.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30")
-        classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.4.30-1.0.0-alpha02")
-    }
+plugins {
+    kotlin("jvm") apply false
+    id("com.android.application") version "7.3.1" apply false
+    id("com.android.library") version "7.3.1" apply false
+    id("org.jetbrains.kotlin.android") version "1.5.31" apply false
 }
 
-allprojects {
+
+
+subprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+    }
+
+    tasks.withType<JavaCompile>().configureEach {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
     }
 }

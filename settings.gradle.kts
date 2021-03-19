@@ -1,6 +1,23 @@
-include(":sample-kapt")
-include(":sample-ksp")
-include(":kapt-processor")
-include(":ksp-processor")
-include(":common")
-rootProject.name = "KSP Conf Playground"
+pluginManagement {
+    val kotlinVersion: String by settings
+    val kspVersion: String by settings
+    plugins {
+        id("com.google.devtools.ksp") version kspVersion
+        kotlin("jvm") version kotlinVersion
+    }
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "ksp-playground"
+
+include(
+    ":sample-ksp",
+    ":sample-kapt",
+    ":common",
+    ":ksp-processor",
+    ":kapt-processor",
+)
